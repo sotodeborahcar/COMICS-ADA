@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <!-- <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦹‍♀️</text></svg>"
+    /> -->
+    <link rel="icon" href="img/images.png" type="image/png" />
+    <title>ComicsADA</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="column logo-container">
+        <h1 class="titulo-logo">ADA COMICS</h1>
+      </div>
+    </header>
+    <!-- BANNER -->
+    <div class="container-banner">
+      <!-- imagen banner -->
+    </div>
+    <!-- MAIN -->
+    <main>
+      <!-- seccion de busqueda -->
+      <div class="seccion-buscador">
+        <h2 class="buscador-titulo">Búsqueda</h2>
+        <div class="buscador-container">
+          <!-- seccion de busqueda por input -->
+          <div class="buscador-container-input">
+            <input
+              type="text"
+              id="buscador-input"
+              placeholder="Ingresá tu búsqueda"
+              aria-labelledby="busqueda-titulo"
+            />
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </div>
+          <!-- seccion de busqueda por filtros -->
+          <div class="buscador-filtro-container">
+            <div class="filtro-container">
+              <label for="filtro-tipo"
+                >TIPO
+                <select name="filtro-tipo" id="filtro-tipo">
+                  <option value="comics">COMICS</option>
+                  <option value="personajes">PERSONAJES</option>
+                </select>
+              </label>
+              <label for="filtro-orden"
+                >ORDEN
+                <select name="filtro-orden" id="filtro-orden">
+                  <option value="title">A-Z</option>
+                  <option value="-title">Z-A</option>
+                  <option value="-data">Más nuevos</option>
+                  <option value="data">Más viejos</option>
+                </select>
+              </label>
+            </div>
+            <button class="boton-buscador" type="button">BUSCAR</button>
+          </div>
+        </div>
+      </div>
+      <!-- SECCION RESULTADOS -->
+      <div>
+        <section class="seccion-comics hidden"></section>
+        <section class="seccion-personajes hidden"></section>
+        <section class="seccion-resultados">
+          <h2 class="titulo-resultados">Resultados</h2>
+          <p class="contador-resultados">
+            <span class="numero-resultados">48446</span> RESULTADOS
+          </p>
+          <div class="resultados"></div>
+          <div class="seccion-paginas">
+            <button
+              type="button"
+              class="pag--button__first-left"
+              aria-label="Primera pagina"
+              disabled
+            >
+              <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="pag--button__left"
+              aria-label="Pagina anterior"
+              disabled
+            >
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="pag--button__right"
+              aria-label="Pagina siguiente"
+            >
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="pag--button__last"
+              aria-label="Ultima pagina"
+            >
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </section>
+        <div class="loader hidden">
+          <div class="loader"></div>
+        </div>
+      </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer--copyright">Hecho con 🦾 por Deborah SOTO</p>
+      <div class="footer--social">
+        <a
+          class="footer--link__linkedin"
+          href="https://www.linkedin.com/in/deborah-carolina-soto-140987/"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          class="footer--link__github"
+          href="https://github.com/sotodeborahcar"
+          target="_blank"
+        >
+          <i class="fab fa-github-alt"></i>
+        </a>
+
+        <a
+          href="https://twitter.com/Debito_Car"
+          class="social-item-link"
+          target="_blanck"
+        >
+          <i class="fab fa-twitter"> </i
+        ></a>
+        <a
+          class="footer--link__email"
+          href="mailto:soto.dc.es@hotmail.com"
+          target="_blank"
+        >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>
