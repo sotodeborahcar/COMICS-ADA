@@ -1,0 +1,57 @@
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+}
+@mixin flex-center{
+  display: flex;
+  justify-content: center;
+}
+@mixin flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@mixin flex-espaciar{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+@mixin flex-centrar{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+@mixin margin-grid {
+    margin: 0 10px 40px;
+}
+
+@mixin button{
+  font-size: $tamaño-principal;
+  font-family: $tipografia-body;
+  background-color: $main-color;
+  color: $color-titulo-secundario;
+  text-transform: uppercase;
+  border: transparent;
+  padding: 5px 10px;
+  margin: 0 5px;
+  
+}
+@mixin mouse {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+@mixin  image-grid {
+    height: 100%;
+    box-shadow: 0 26px 24px -16px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    transform: translateY(0);
+    transition: 0.2s;
+}
+@mixin comic-title{
+    height: 64px;
+    margin-top: 25px;
+}
+@mixin padding-central{
+    padding: 0 10px;
+}
