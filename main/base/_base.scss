@@ -1,10 +1,40 @@
 @import "tipography.scss";
 @import "colors.scss";
+@import "../abstracts/mixins.scss";
+
+
+/* 
+=======================
+        GENERAL 
+=======================
+*/
 
 * {
-  margin: 0;
   position: relative;
 }
+html, body{
+  height: 100%;
+}
+body {
+  @include flex-column-center;
+  margin: 0;
+  font-family: $tipografia-body;
+  color: $main-color;
+  
+}
+
 a {
   text-decoration: none;
 }
+img{
+  width: 100%;
+}
+
+.column{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  @include padding-central;
+  box-sizing: border-box;
+}
+
