@@ -2,7 +2,6 @@
 @import "colors.scss";
 @import "../abstracts/mixins.scss";
 
-
 /* 
 =======================
         GENERAL 
@@ -12,7 +11,8 @@
 * {
   position: relative;
 }
-html, body{
+html,
+body {
   height: 100%;
 }
 body {
@@ -20,21 +20,22 @@ body {
   margin: 0;
   font-family: $tipografia-body;
   color: $main-color;
-  
 }
 
 a {
   text-decoration: none;
 }
-img{
+img {
   width: 100%;
 }
 
-.column{
+.column {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   @include padding-central;
   box-sizing: border-box;
 }
-
+.hidden {
+  display: none;
+}

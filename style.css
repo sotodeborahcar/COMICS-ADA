@@ -9,7 +9,8 @@
   position: relative;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -36,6 +37,10 @@ img {
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
 }
 
 button {

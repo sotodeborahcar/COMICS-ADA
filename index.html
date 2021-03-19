@@ -55,9 +55,11 @@
               </label>
               <label for="search-sort"
                 >ORDEN
-                <select name="search-sort" id="search-sort">
-                  <option value="name" class="character-option">A-Z</option>
-                  <option value="-name" class="character-option">Z-A</option>
+                <select
+                  name="sort-comic"
+                  class="select-sort-comics"
+                  id="search-sort"
+                >
                   <option value="title" class="comic-option">A-Z</option>
                   <option value="-title" class="comic-option">Z-A</option>
                   <option value="-onsaleDate" class="comic-option">
@@ -66,6 +68,14 @@
                   <option value="onsaleDate" class="comic-option">
                     Más viejos
                   </option>
+                </select>
+                <select
+                  name="sort-character"
+                  class="select-sort-character hidden"
+                  id="search-sort"
+                >
+                  <option value="name" class="character-option">A-Z</option>
+                  <option value="-name" class="character-option">Z-A</option>
                 </select>
               </label>
             </div>
@@ -97,7 +107,7 @@
         <section class="results-section">
           <h2 class="results-title">RESULTADOS</h2>
           <p class="results-count">
-            <span class="results-number">0</span> RESULTADOS
+            <span class="results-number"></span> RESULTADOS
           </p>
           <!-- SECCION-GRID -->
           <div class="results"></div>
