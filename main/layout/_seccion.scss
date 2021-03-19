@@ -4,24 +4,22 @@
 =======================
 */
 
-
 /* 
 =======================
     PAGINACION 
 =======================
 */
-.pagination{
-    @include flex-center;
-    
+.pagination {
+  @include flex-center;
 }
-.pag-button{
-    width: 40px;
-    height: 40px;
-    @include mouse;
-    @include flex-column-center;
-    font-size: $tamaño-boton;
-    &:disabled{
-        color: $color-contraste;
-        border-color: $color-contraste;
-    }
+.pag-button {
+  width: 40px;
+  height: 40px;
+  @include mouse;
+  @include flex-column-center;
+  font-size: $tamaño-boton;
+  &:disabled {
+    color: $color-contraste;
+    border-color: $color-contraste;
+  }
 }
