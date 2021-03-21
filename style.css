@@ -25,6 +25,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 img {
@@ -53,13 +54,15 @@ button {
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.5s;
 }
 button:not(:disabled):hover {
   background-color: #ed1d23;
 }
 
-button:focus, select:focus, input:focus {
+button:focus,
+select:focus,
+input:focus {
   outline-color: #ed1d23;
 }
 
@@ -81,13 +84,16 @@ header {
 
 .titulo-logo {
   background-color: #ed1d23;
-  color: #fff;
   font-family: "Bangers", cursive;
   padding: 0 10px;
   font-weight: bold;
   font-size: 45px;
   line-height: 50px;
   margin: 0;
+}
+
+a:hover {
+  color: #020202;
 }
 
 .container-banner {
@@ -212,6 +218,86 @@ select:first-of-type {
         GRID 
 =======================
 */
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  min-height: 300px;
+}
+
+.comic-card,
+.character-card {
+  width: calc(100% / 5 - 2 * 10px);
+  margin: 0 10px 40px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.comic-thumbnail {
+  height: 100%;
+  box-shadow: rgba(4, 4, 4, 0.399) 2.95px 2.95px 4.6px;
+  margin-bottom: 20px;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+
+.comic-card:hover .comic-thumbnail {
+  transform: translateY(-10px);
+  filter: opacity(0.5);
+}
+
+.comic-card:hover .comic-title {
+  color: #ed1d23;
+}
+
+.character-card .character-name,
+.comic-card .comic-title {
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.comic-card .comic-title {
+  height: 64px;
+  margin-top: 25px;
+}
+
+.character-img-container {
+  flex-grow: 1;
+  border-bottom: 4px solid #ed1d23;
+  overflow: hidden;
+}
+
+.character-thumbnail {
+  height: 100%;
+  transition: 0.5s;
+}
+
+.character-name-container {
+  padding: 16px 24px 17px 20px;
+  background-color: #151515;
+  transition: 0.5s;
+}
+
+.character-card:hover .character-name-container {
+  background-color: #ed1d23;
+  border-radius: 0 0 50px 5px;
+}
+
+.character-card:hover .character-thumbnail,
+.comic-card:hover .comic-thumbnail {
+  transform: scale(1.1);
+  box-shadow: 0 26px 24px -16px rgba(104, 8, 14, 0.6);
+}
+
+.character-card .character-name {
+  color: #fff;
+  height: 80px;
+  margin-bottom: 0;
+}
+
 /* 
 =======================
     PAGINACION 
@@ -226,14 +312,14 @@ select:first-of-type {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.5s;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 25px;
 }
 .pag-button:disabled {
-  color: #d3d3d3;
+  color: #7e7e7e;
   border-color: #d3d3d3;
 }
 
