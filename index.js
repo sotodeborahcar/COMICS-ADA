@@ -199,3 +199,11 @@ onOffBotones = (offset = "0", cantidadDeResultados = "0") => {
 const mostrarCantidadResultados = (cantidadDeResultados) => {
   numeroDeResultados.innerHTML = `${cantidadDeResultados}`;
 };
+
+////////\\\\\\\ MODO OSCURO ///////\\\\\\\\
+
+const chk = document.getElementById("chk");
+
+chk.addEventListener("change", () => {
+  document.body.classList.toggle("dark");
+});
