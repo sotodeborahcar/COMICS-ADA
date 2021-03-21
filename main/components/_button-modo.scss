@@ -16,12 +16,12 @@
 
 .label {
   background-color: $main-color-principal;
-  border-radius: 25px;
+  border-radius: $tamaño-boton;
   cursor: pointer;
   @include flex-space;
   padding: 5px;
   position: relative;
-  height: 25px;
+  height: $tamaño-boton;
   width: 50px;
 }
 
