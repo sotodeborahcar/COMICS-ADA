@@ -71,7 +71,7 @@ button:focus, select:focus, input:focus {
 }
 
 .modo.dark {
-  background: #292c35;
+  background: #151515;
   color: #fff;
 }
 
@@ -85,7 +85,7 @@ button:focus, select:focus, input:focus {
   border-radius: 25px;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  justify-content: center;
   justify-content: space-between;
   padding: 5px;
   position: relative;

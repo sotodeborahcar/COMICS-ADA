@@ -1,12 +1,13 @@
 /* MODO OSCURO */
+
 .modo {
   display: flex;
   justify-content: flex-end;
   margin-top: 7.5px;
 }
 .modo.dark {
-  background: #292c35;
-  color: #fff;
+  background: $main-color;
+  color: $color-titulo;
 }
 
 .checkbox {
@@ -15,11 +16,10 @@
 }
 
 .label {
-  background-color: #ed1d23;
+  background-color: $main-color-principal;
   border-radius: 25px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
+  @include flex-center;
   justify-content: space-between;
   padding: 5px;
   position: relative;
@@ -28,7 +28,7 @@
 }
 
 .label .ball {
-  background-color: #fff;
+  background-color: $color-titulo;
   border-radius: 50%;
   position: absolute;
   top: 2px;
@@ -43,9 +43,9 @@
 }
 
 .fa-moon {
-  color: #020202;
+  color: $color-principal;
 }
 
 .fa-sun {
-  color: #fff;
+  color: $color-titulo;
 }
