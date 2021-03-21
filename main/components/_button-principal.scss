@@ -5,6 +5,10 @@ button {
     background-color: $main-color-principal;
   }
 }
+.dark .search-button {
+  background-color: $color-secundario;
+  color: $color-titulo;
+}
 
 button:focus,
 select:focus,
