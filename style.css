@@ -59,8 +59,63 @@ button:not(:disabled):hover {
   background-color: #ed1d23;
 }
 
-button:focus, select:focus, input:focus {
+button:focus,
+select:focus,
+input:focus {
   outline-color: #ed1d23;
+}
+
+/* MODO OSCURO */
+.modo {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7.5px;
+}
+
+.modo.dark {
+  background: #292c35;
+  color: #fff;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  background-color: #ed1d23;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  height: 25px;
+  width: 50px;
+}
+
+.label .ball {
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  height: 30px;
+  width: 30px;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+.fa-moon {
+  color: #020202;
+}
+
+.fa-sun {
+  color: #fff;
 }
 
 /* 
@@ -141,7 +196,8 @@ main {
   font-size: 25px;
   box-sizing: border-box;
 }
-.search__container, .search__inner-container {
+.search__container,
+.search__inner-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -166,29 +222,35 @@ main {
           RESULTADOS 
   =======================
   */
-.comics__section.hidden, .character__section.hidden {
+.comics__section.hidden,
+.character__section.hidden {
   display: none;
 }
 
-.comics__section, .character__section {
+.comics__section,
+.character__section {
   display: flex;
   margin: 80px 10px 50px;
 }
 
-.comic-title, .character-portrait {
+.comic-title,
+.character-portrait {
   max-width: 350px;
   margin-right: 50px;
 }
 
-.comic-title, .character-name {
+.comic-title,
+.character-name {
   margin-top: 0;
 }
 
-.results-count, .results-title {
+.results-count,
+.results-title {
   margin-left: 10px;
 }
 
-.results-count, label {
+.results-count,
+label {
   font-size: 13px;
   font-weight: bold;
   color: #7e7e7e;
