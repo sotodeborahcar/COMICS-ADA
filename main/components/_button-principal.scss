@@ -1,11 +1,13 @@
-button{
-    @include button;
-    @include mouse;
-    &:not(:disabled):hover{
-        background-color: $main-color-principal;
-    }
+button {
+  @include button;
+  @include mouse;
+  &:not(:disabled):hover {
+    background-color: $main-color-principal;
+  }
 }
 
-button:focus, select:focus, input:focus{
-    outline-color: $main-color-principal;
+button:focus,
+select:focus,
+input:focus {
+  outline-color: $main-color-principal;
 }
