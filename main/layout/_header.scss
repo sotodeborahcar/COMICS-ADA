@@ -9,7 +9,8 @@ header {
   background-color: $color-principal;
 }
 .logo-container {
-  @include flex-center;
+  display: flex;
+  justify-content: space-between;
 }
 .titulo-logo {
   background-color: $main-color-principal;
