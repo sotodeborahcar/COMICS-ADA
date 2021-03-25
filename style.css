@@ -250,7 +250,8 @@ main {
 }
 
 .comic-title,
-.character-portrait {
+.character-portrait,
+.comic-cover {
   max-width: 350px;
   margin-right: 50px;
 }
@@ -321,7 +322,8 @@ select:first-of-type {
   transition: 0.5s;
 }
 
-.comic-card:hover .comic-thumbnail {
+.comic-card:hover .comic-thumbnail,
+.character:hover {
   transform: translateY(-10px);
   filter: opacity(0.5);
 }
@@ -370,10 +372,20 @@ select:first-of-type {
   box-shadow: 0 26px 24px -16px rgba(104, 8, 14, 0.6);
 }
 
-.character-card .character-name {
+.character-card .character-name,
+.character .character-name {
   color: #fff;
   height: 80px;
   margin-bottom: 0;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% / 6 - 2 * 10px);
+  margin: 0 10px 40px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 /* 

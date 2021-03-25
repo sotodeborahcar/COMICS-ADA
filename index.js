@@ -33,7 +33,7 @@ const selectSortComic = document.querySelector(".select-sort-comics");
 const selectSortCharacter = document.querySelector(".select-sort-character");
 
 const numeroDeResultados = document.querySelector(".results-number");
-
+const titleDeResultados = document.querySelector(".results-title");
 //////\\\\\\ SELECCION ///////\\\\\\\
 
 selectType.onchange = () => {
@@ -53,7 +53,7 @@ mostrarComics = (comic) => {
   return `
     <div class="comic-card">
         <div class="comic-img-container">
-            <img src="${comic.thumbnail.path}.jpg" alt="" class="comic-thumbnail" data-id="${comic.id}"/>
+            <img src="${comic.thumbnail.path}/portrait_uncanny.${comic.thumbnail.extension}" alt="" class="comic-thumbnail" data-id="${comic.id}"/>
         </div>
         <h3 class="comic-title">${comic.title}</h3>
     </div>
@@ -63,7 +63,7 @@ mostrarCharacters = (character) => {
   return `
     <div class="character-card">
         <div class="character-img-container">
-            <img src="${character.thumbnail.path}.jpg" alt="" class="character-thumbnail" data-id="${character.id}" />
+            <img src="${character.thumbnail.path}/portrait_uncanny.${character.thumbnail.extension}" alt="" class="character-thumbnail" data-id="${character.id}" />
         </div>
         <div class="character-name-container">
             <h3 class="character-name">${character.name}</h3>
@@ -80,6 +80,7 @@ const mostrarResultados = (
   inputSearch = ""
 ) => {
   let inputContainer = "";
+  offset = paginaActual * resultadosPorPagina;
   if (inputSearch !== "") {
     if (type == "comics") {
       inputContainer = `&titleStartsWith=${inputSearch}`;
@@ -89,9 +90,7 @@ const mostrarResultados = (
     }
   }
   fetch(
-    `${urlBase}${type}?apikey=${apikey}&orderBy=${order}${inputContainer}&offset=${
-      paginaActual * resultadosPorPagina
-    }`
+    `${urlBase}${type}?apikey=${apikey}&orderBy=${order}${inputContainer}&offset=${offset}`
   )
     .then((res) => res.json())
     .then((data) => {
@@ -112,6 +111,7 @@ const mostrarResultados = (
       //   console.log("offset del comic:", data.data.offset);
       onOffBotones(offset, cantidadDeResultados);
       mostrarCantidadResultados(cantidadDeResultados);
+      verInfoComic();
     });
 };
 mostrarResultados();
@@ -139,6 +139,7 @@ const buscarResultados = () => {
     }
   }
 };
+
 botonSearch.onclick = () => {
   paginaActual = 0;
   buscarResultados();
@@ -194,7 +195,7 @@ onOffBotones = (offset = "0", cantidadDeResultados = "0") => {
   }
 };
 
-// => MOSTRAR CANTIDAD DE RESULTADOS
+/////\\\\ => MOSTRAR CANTIDAD DE RESULTADOS ////\\\\
 
 const mostrarCantidadResultados = (cantidadDeResultados) => {
   numeroDeResultados.innerHTML = `${cantidadDeResultados}`;
@@ -206,4 +207,104 @@ const chk = document.getElementById("chk");
 
 chk.addEventListener("change", () => {
   document.body.classList.toggle("dark");
+  console.log("modo");
 });
+
+//////\\\\\\ INFORMACION DE COMICS O PERSONAJES /////\\\\\
+
+const infoComic = (comicId) => {
+  console.log("hola");
+  offset = paginaActual * resultadosPorPagina;
+  fetch(
+    `${urlBase}/comics/${comicId}?apikey=${apikey}&orderBy=title&offset=${offset}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      data.data.results.map((data) => {
+        const seccionComic = document.querySelector(".comics__section");
+        seccionComic.classList.remove("hidden");
+        resultados.classList.add("hidden");
+
+        const publicacionFormatoAmericano = data.modified.split("T")[0];
+        const dia = publicacionFormatoAmericano.slice(8, 10);
+        const mes = publicacionFormatoAmericano.slice(5, 7);
+        const anio = publicacionFormatoAmericano.slice(0, 4);
+
+        seccionComic.innerHTML = "";
+        seccionComic.innerHTML += `
+          <img class="comic-cover" src="${data.thumbnail.path}.jpg" data-id="${
+          data.id
+        }">
+          </img>
+          <div class="comic-details">
+            <h2 class="comic-title">${data.title}</h2>
+            <h3>Publicado:</h3> 
+            <p class="comic-published">${dia}/${mes}/${anio}</p>
+            <h3>Guionista:</h3> 
+            <p class="comic-writers">${obtenerNombreGuionista(data)}</p>
+            <h3>Description:</h3>
+            <p class="comic-description">${data.description}</p>
+          </div>
+        `;
+
+        offset = paginaActual * resultadosPorPagina;
+        fetch(`${urlBase}/comics/${comicId}/characters?apikey=${apikey}`)
+          .then((res) => res.json())
+          .then((data) => {
+            const seccionCharacter = document.querySelector(".results");
+            seccionCharacter.innerHTML = "";
+            // mostrarCantidadResultados(data.data.results.length);
+
+            const mostrarCantidadResultados2 = () => {
+              titleDeResultados.innerHTML = `Personajes`;
+              numeroDeResultados.innerHTML = `${data.data.results.length}`;
+            };
+            mostrarCantidadResultados2();
+
+            data.data.results.map((character) => {
+              seccionCharacter.classList.remove("hidden");
+              seccionCharacter.innerHTML += `
+              <div class="character">
+                <div class="character-img-container">
+                  <img class="character-thumbnail" src="${character.thumbnail.path}.jpg" data-id="${character.id}"></img>
+                </div>
+                <div class="character-name-container">
+                  <h3 class="character-name">${character.name}</h3>
+                </div>
+              </div>
+              `;
+            });
+          });
+      });
+    });
+  onOffBotones();
+};
+
+obtenerNombreGuionista = (comic) => {
+  let nombreGuionistas = "";
+
+  let escritores = comic.creators.items.filter((guionista) => {
+    return guionista.role === "writer";
+  });
+  if (escritores.length === 0) {
+    nombreGuionistas = "No hay informacion";
+  } else {
+    escritores.forEach((escritor) => {
+      nombreGuionistas += escritor.name;
+    });
+    nombreGuionistas = nombreGuionistas.substring(0, nombreGuionistas.length);
+  }
+  return nombreGuionistas;
+};
+
+const verInfoComic = () => {
+  const cardsComics = document.querySelectorAll(".comic-card");
+
+  cardsComics.forEach((card) => {
+    card.onclick = (e) => {
+      comicId = e.target.dataset.id;
+      resultados.innerHTML = "";
+      infoComic(comicId);
+    };
+  });
+};
