@@ -21,7 +21,8 @@
   @include image-grid;
 }
 
-.comic-card:hover .comic-thumbnail {
+.comic-card:hover .comic-thumbnail,
+.character:hover {
   transform: translateY(-10px);
   filter: opacity(0.5);
 }
@@ -68,10 +69,19 @@
   box-shadow: 0 26px 24px -16px rgba(104, 8, 14, 0.6);
 }
 
-.character-card .character-name {
+.character-card .character-name,
+.character .character-name {
   color: $color-titulo;
   height: 80px;
   margin-bottom: 0;
+}
+// => PERSONAJES:
+
+.character {
+  @include flex-column;
+  width: calc(100% / 6 - 2 * 10px);
+  @include margin-grid;
+  @include mouse;
 }
 
 /* 
