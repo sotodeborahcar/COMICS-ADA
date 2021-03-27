@@ -321,6 +321,8 @@ const verInfoComic = () => {
 
 /////\\\\\ VER LA INFORMACION DEL PERSONAJES Y LOS COMICS EN LOS QUE SE ENCUENTRA: /////\\\\
 
+// 🍺 🍺 🍺 ACA MALE TENGO EL PROBLEMA DE QUE NO ME RECONOCE "results" y me da characters indefinidos 🍺 🍺 🍺
+
 const infoCharacter = (characterId) => {
   console.log("soy un character");
   // offset = paginaActual * resultadosPorPagina;
