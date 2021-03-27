@@ -197,7 +197,7 @@ onOffBotones = (offset = "0", cantidadDeResultados = "0") => {
     ultimaPagina.disabled = false;
   }
 };
-// desactivar boton searc
+// desactivar boton search
 
 offSearchBoton = () => {
   document.querySelector(".search-button").disabled = true;
@@ -334,8 +334,7 @@ const infoCharacter = (characterId) => {
         // contenedorResultados.innerHTML = ""; // => borro el total de los resultados
         const sectionChar = document.querySelector(".character__section");
         sectionChar.classList.remove("hidden");
-        sectionChar.innerHTML = ""; // => borro los personajes
-        // agrego los personajes seleccionados:
+        sectionChar.innerHTML = "";
         sectionChar.innerHTML += `
         <div class="character-card" data-id="${data.id}">
           <div class="character-img-container">
