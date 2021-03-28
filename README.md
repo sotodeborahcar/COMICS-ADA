@@ -4,8 +4,8 @@
 
 Proyecto realizado en <a href="https://adaitw.org/">ADA ITW</a> 👩‍💻, aplicando API REST con datos reales, que permite crear listas de cómics y personajes de cómics, y obtener informacion sobre los mismos.
 
-Para ver el proyecto <img src="https://media.giphy.com/media/kfdToDtrFydamGsbPz/giphy.gif" width="40"> <a href="https://sotodeborahcar.github.io/COMICS-ADA/">COMICS</a>
-o en <a href="https://lucid-golick-61cd37.netlify.app">COMICS en Netlify</a>
+Para ver el proyecto <img src="https://media.giphy.com/media/kfdToDtrFydamGsbPz/giphy.gif" width="40"><a href="https://sotodeborahcar.github.io/COMICS-ADA/">COMICS</a>
+ó en <a href="https://comic-ada.netlify.app">COMICS en Netlify</a>
 
 ### Tecnologias aplicadas:
 
