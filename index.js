@@ -3,6 +3,7 @@
 // "https://gateway.marvel.com/v1/public/comics?apikey=a6943ab77d6617d4958a73abab2a9b91"
 const urlBase = "https://gateway.marvel.com/v1/public/";
 const apikey = "a6943ab77d6617d4958a73abab2a9b91";
+// let offset = 0;
 
 const resultados = document.querySelector(".results");
 const resultadosPorPagina = 20;
@@ -34,6 +35,7 @@ const selectSortCharacter = document.querySelector(".select-sort-character");
 
 const numeroDeResultados = document.querySelector(".results-number");
 const titleDeResultados = document.querySelector(".results-title");
+
 //////\\\\\\ SELECCION ///////\\\\\\\
 
 selectType.onchange = () => {
@@ -112,6 +114,7 @@ const mostrarResultados = (
       onOffBotones(offset, cantidadDeResultados);
       mostrarCantidadResultados(cantidadDeResultados);
       verInfoComic();
+      verInfoCharact();
     });
 };
 mostrarResultados();
@@ -194,6 +197,11 @@ onOffBotones = (offset = "0", cantidadDeResultados = "0") => {
     ultimaPagina.disabled = false;
   }
 };
+// desactivar boton search
+
+offSearchBoton = () => {
+  document.querySelector(".search-button").disabled = true;
+};
 
 /////\\\\ => MOSTRAR CANTIDAD DE RESULTADOS ////\\\\
 
@@ -210,20 +218,18 @@ chk.addEventListener("change", () => {
   console.log("modo");
 });
 
-//////\\\\\\ INFORMACION DE COMICS O PERSONAJES /////\\\\\
+//////\\\\\\ INFORMACION DE LOS COMICS Y LOS PERSONAJES QUE ESTAN EN EL  /////\\\\\
 
 const infoComic = (comicId) => {
-  console.log("hola");
+  console.log("hola soy un comic");
   offset = paginaActual * resultadosPorPagina;
-  fetch(
-    `${urlBase}/comics/${comicId}?apikey=${apikey}&orderBy=title&offset=${offset}`
-  )
+  fetch(`${urlBase}comics/${comicId}?apikey=${apikey}&offset=${offset}`)
     .then((res) => res.json())
     .then((data) => {
       data.data.results.map((data) => {
         const seccionComic = document.querySelector(".comics__section");
         seccionComic.classList.remove("hidden");
-        resultados.classList.add("hidden");
+        // resultados.classList.add("hidden");
 
         const publicacionFormatoAmericano = data.modified.split("T")[0];
         const dia = publicacionFormatoAmericano.slice(8, 10);
@@ -248,7 +254,9 @@ const infoComic = (comicId) => {
         `;
 
         offset = paginaActual * resultadosPorPagina;
-        fetch(`${urlBase}/comics/${comicId}/characters?apikey=${apikey}`)
+        fetch(
+          `${urlBase}comics/${comicId}/characters?apikey=${apikey}&offset=${offset}`
+        )
           .then((res) => res.json())
           .then((data) => {
             const seccionCharacter = document.querySelector(".results");
@@ -278,6 +286,8 @@ const infoComic = (comicId) => {
       });
     });
   onOffBotones();
+
+  // offSearchBoton();
 };
 
 obtenerNombreGuionista = (comic) => {
@@ -305,6 +315,76 @@ const verInfoComic = () => {
       comicId = e.target.dataset.id;
       resultados.innerHTML = "";
       infoComic(comicId);
+    };
+  });
+};
+
+/////\\\\\ VER LA INFORMACION DEL PERSONAJES Y LOS COMICS EN LOS QUE SE ENCUENTRA: /////\\\\
+
+// 🍺 🍺 🍺 ACA MALE TENGO EL PROBLEMA DE QUE NO ME RECONOCE "results" y me da characters indefinidos 🍺 🍺 🍺
+
+const infoCharacter = (characterId) => {
+  console.log("soy un character");
+  // offset = paginaActual * resultadosPorPagina;
+  fetch(
+    `${urlBase}characters/${characterId}?apikey=${apikey}&offset=${offset}&orderBy=name`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      data.data.results.map((data) => {
+        // let contenedorResultados = document.querySelector(".results-section");
+        // contenedorResultados.innerHTML = ""; // => borro el total de los resultados
+        const sectionChar = document.querySelector(".character__section");
+        sectionChar.classList.remove("hidden");
+        sectionChar.innerHTML = "";
+        sectionChar.innerHTML += `
+        <div class="character-card" data-id="${data.id}">
+          <div class="character-img-container">
+            <img class="comic-thumbnail" src="${data.thumbnail.path}.jpg" data-id="${data.id}"></img>
+          </div>
+          <div class="character-name-container">
+            <h3 class="character-name">${data.name}</h3>
+            
+          </div>
+        </div>`;
+
+        // offset = paginaActual * resultadosPorPagina;
+        fetch(
+          `${urlBase}characters/${characterId}/comics?apikey=${apikey}&offset=${offset}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            // let comics = dataComic.data.results;
+
+            const sectionComic = document.querySelector(".results");
+            sectionComic.innerHTML = "";
+            // mostrarCantidadResultados(comics.length);
+
+            data.data.results.map((comic) => {
+              sectionComic.classList.remove("hidden");
+              sectionComic.innerHTML += `
+              <div class="comic-card">
+                <div class="comic-img-container">
+                  <img src="${comic.thumbnail.path}.jpg" alt="" class="comic-thumbnail" data-id="${comic.id}"/>
+                </div>
+                <h3 class="comic-title">${comic.title}</h3>
+              </div>
+            `;
+            });
+          });
+      });
+    });
+  onOffBotones();
+};
+
+const verInfoCharact = () => {
+  const cardsCharact = document.querySelectorAll(".character-card");
+
+  cardsCharact.forEach((card) => {
+    card.onclick = (e) => {
+      characterId = e.target.dataset.id;
+      resultados.innerHTML = "";
+      infoCharacter(characterId);
     };
   });
 };
