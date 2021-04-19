@@ -96,6 +96,7 @@ const mostrarResultados = (
   )
     .then((res) => res.json())
     .then((data) => {
+      // no dejes console log en entregas
       console.log("pagina del comic:", data);
       cantidadDeResultados = data.data.total;
       resultados.innerHTML = "";
@@ -181,6 +182,7 @@ ultimaPagina.onclick = () => {
 
 // =>deshabilitar paginacion
 
+// los params por defecto deberian ser numeros, no strings
 onOffBotones = (offset = "0", cantidadDeResultados = "0") => {
   if (paginaActual == 0) {
     primeraPagina.disabled = true;
@@ -211,6 +213,7 @@ const mostrarCantidadResultados = (cantidadDeResultados) => {
 
 ////////\\\\\\\ MODO OSCURO ///////\\\\\\\\
 
+// usemos nombres de variables mas descriptivos
 const chk = document.getElementById("chk");
 
 chk.addEventListener("change", () => {
@@ -221,6 +224,8 @@ chk.addEventListener("change", () => {
 //////\\\\\\ INFORMACION DE LOS COMICS Y LOS PERSONAJES QUE ESTAN EN EL  /////\\\\\
 
 const infoComic = (comicId) => {
+  // jaja no me puedo quejar de este console log porque es 100% algo
+  // que yo escribiria. PERO no lo pongas en entregas! 
   console.log("hola soy un comic");
   offset = paginaActual * resultadosPorPagina;
   fetch(`${urlBase}comics/${comicId}?apikey=${apikey}&offset=${offset}`)
@@ -231,12 +236,17 @@ const infoComic = (comicId) => {
         seccionComic.classList.remove("hidden");
         // resultados.classList.add("hidden");
 
+        // bien esto pero, con tiempo, proba jugar un poco con Date()
         const publicacionFormatoAmericano = data.modified.split("T")[0];
         const dia = publicacionFormatoAmericano.slice(8, 10);
         const mes = publicacionFormatoAmericano.slice(5, 7);
         const anio = publicacionFormatoAmericano.slice(0, 4);
 
+        // en title y en description, asumis que siempre te van a venir bien
+        // lo correcto es siempre tener un mensaje en caso de que vengan 
+        // undefined o null
         seccionComic.innerHTML = "";
+        // falta alt en la imagen
         seccionComic.innerHTML += `
           <img class="comic-cover" src="${data.thumbnail.path}.jpg" data-id="${
           data.id
@@ -271,6 +281,7 @@ const infoComic = (comicId) => {
 
             data.data.results.map((character) => {
               seccionCharacter.classList.remove("hidden");
+              // falta alt en la imagen
               seccionCharacter.innerHTML += `
               <div class="character">
                 <div class="character-img-container">
@@ -321,6 +332,7 @@ const verInfoComic = () => {
 
 /////\\\\\ VER LA INFORMACION DEL PERSONAJES Y LOS COMICS EN LOS QUE SE ENCUENTRA: /////\\\\
 
+// Probe de mil maneras y no pude reproducir el error, Debo!!! 
 // 🍺 🍺 🍺 ACA MALE TENGO EL PROBLEMA DE QUE NO ME RECONOCE "results" y me da characters indefinidos 🍺 🍺 🍺
 
 const infoCharacter = (characterId) => {
@@ -332,7 +344,10 @@ const infoCharacter = (characterId) => {
     .then((res) => res.json())
     .then((data) => {
       data.data.results.map((data) => {
-        // let contenedorResultados = document.querySelector(".results-section");
+        // me confunde un poco el codigo comentado aca 
+        // fue algo que te falto borrar? es para que yo lo vea?
+
+        // let contenedorResultados = document.querySelector(".results-section"); 
         // contenedorResultados.innerHTML = ""; // => borro el total de los resultados
         const sectionChar = document.querySelector(".character__section");
         sectionChar.classList.remove("hidden");
